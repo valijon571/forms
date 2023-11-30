@@ -10,18 +10,19 @@ const Tablisa = () => {
   const [errors, setErrors] = useState({
     gov_number: false,
     tech_passport_seria: false,
-    user_tech_passport_numbernot: false,
+    tech_passport_number: false,
     user_not: false,
   });
   const [obj, setObj] = useState({
     gov_number: "",
     tech_passport_seria: "",
-    user_tech_passport_numbernot: "",
+    tech_passport_number: "",
   });
   const navigate = useNavigate();
   const onSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
+    console.log("swefdwefwe");
     let t = true,
       err = {};
     if (!obj.gov_number) {
@@ -32,16 +33,17 @@ const Tablisa = () => {
       t = false;
       err = { ...err, tech_passport_seria: true };
     }
-    if (!obj.user_tech_passport_numbernot) {
+    if (!obj.tech_passport_number) {
       t = false;
-      err = { ...err, user_tech_passport_numbernot: true };
+      err = { ...err, tech_passport_number: true };
     }
     if (t) {
+      console.log("ax");
       axios
         .post("https://apiinson.yarbek.uz/api/v1/gazbalon/vehicle", {
           gov_number: obj.gov_number,
           tech_passport_seria: obj.tech_passport_seria,
-          user_tech_passport_numbernot: obj.user_tech_passport_numbernot,
+          tech_passport_number: obj.tech_passport_number,
         })
         .then((r) => {
           localStorage.setItem("token", r?.data?.tokens?.access ?? "");
@@ -57,6 +59,7 @@ const Tablisa = () => {
           setLoading(false);
         });
     } else {
+      console.log("errrr");
       setLoading(false);
       setErrors(err);
     }
