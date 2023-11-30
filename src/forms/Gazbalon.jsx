@@ -1,5 +1,6 @@
 import React from "react";
 import { GazbalonStyle } from "./GazbalonStyle";
+import { Link } from "react-router-dom";
 
 const Gazbalon = () => {
   return (
@@ -61,12 +62,65 @@ const Gazbalon = () => {
                     </div>
                   </div>
                 </div>
+                <div class="col_2">
+                  <div>
+                    <label class="sc-gsFSXq_dVuJAY" for="name">
+                      <div class="label">Модель ТС</div>
+                      <div class="i_target">
+                        <div class="input_body_disabled">
+                          <input
+                            type="text"
+                            name="name"
+                            placeholder=""
+                            disabled=""
+                            value="NEXIA SOHC"
+                          />
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                  <div>
+                    <label class="sc-gsFSXq_dVuJAY" for="name">
+                      <div class="label">Год выпуска</div>
+                      <div class="i_target">
+                        <div class="input_body_disabled">
+                          <input
+                            type="text"
+                            name="name"
+                            placeholder=""
+                            disabled=""
+                            value="2014"
+                          />
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                <div>
+                  <label class="sc-gsFSXq_dVuJAY" for="name">
+                    <div class="label">Владелец (ФИО)</div>
+                    <div class="i_target">
+                      <div class="input_body_disabled">
+                        <input
+                          type="text"
+                          name="name"
+                          placeholder=""
+                          disabled=""
+                          value="MUSURMANOV YARBEK XUDAYBERDI OGLI"
+                        />
+                      </div>
+                    </div>
+                  </label>
+                </div>
               </div>
               <hr />
               <div class="btns">
-                <button type="submit" class="sc-imWYAI fJvLDQ">
+                <button type="button" class="sc-imWYAI_fJvLDQ">
                   Найти
                 </button>
+                <Link to="/" type="button" class="sc-jXbUNg_kChvNU">
+                  Tozalash
+                </Link>
               </div>
             </header>
           </div>
