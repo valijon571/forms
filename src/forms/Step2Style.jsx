@@ -1,5 +1,5 @@
 import styled from "styled-components";
-export const BalonStyle = styled.div`
+export const Step2Style = styled.div`
   & .form_target {
     width: 100%;
     display: flex;

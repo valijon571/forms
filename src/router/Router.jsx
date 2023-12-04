@@ -1,16 +1,18 @@
 import { Route, Routes } from "react-router-dom";
-import Tablisa from "../forms/Tablisa";
-import Gazbalon from "../forms/Gazbalon";
-import Balon from "../forms/Balon";
+import Step0 from "../forms/Step0";
+import Step1 from "../forms/Step1";
+import Step2 from "../forms/Step2";
+import Step3 from "../forms/Step3";
 
 
 const Router = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Tablisa />} />
-        <Route path="/gaz" element={<Gazbalon />} />
-        <Route path="/balon" element={<Balon />} />
+        <Route path="/" element={<Step0 />} />
+        <Route path="/Step1" element={<Step1 />} />
+        <Route path="/Step2" element={<Step2 />} />
+        <Route path="/Step3" element={<Step3 />} />
 
 
       </Routes>

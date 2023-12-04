@@ -1,10 +1,11 @@
 import React from "react";
-import { BalonStyle } from "./BalonStyle";
+import { Link } from "react-router-dom";
+import { Step2Style } from "./Step2Style";
 
-const Balon = () => {
+const Step2 = () => {
   return (
     <>
-      <BalonStyle>
+      <Step2Style>
         <div class="content">
           <div class="form_target">
             <div class="sc-jaXxmE_gwJYWD">
@@ -110,7 +111,7 @@ const Balon = () => {
                     </div>
                     <div class="btns">
                       <button type="submit" class="sc-imWYAI_fJvLDQ">
-                        Найти
+                      <Link to="/gb">Найти</Link>
                       </button>
                     </div>
                   </form>
@@ -119,8 +120,8 @@ const Balon = () => {
             </div>
           </div>
         </div>
-      </BalonStyle>
+      </Step2Style>
     </>
   );
 };
-export default Balon;
+export default Step2;

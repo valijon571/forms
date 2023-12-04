@@ -1,10 +1,10 @@
 import React from "react";
 import axios from "axios";
-import { TablisaStyle } from "./TablisaStyle";
+import { Step0Style } from "./Step0Style";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Tablisa = () => {
+const Step0 = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({
@@ -47,7 +47,7 @@ const Tablisa = () => {
         })
         .then((r) => {
           localStorage.setItem("token", r?.data?.tokens?.access ?? "");
-          navigate("/gaz");
+          navigate("/Step1");
         })
         .catch((e) => {
           console.log(e);
@@ -67,7 +67,7 @@ const Tablisa = () => {
 
   return (
     <>
-      <TablisaStyle>
+      <Step0Style>
         <div className="header">
           <div class="sc-cmaqmh_suTSs">
             <header>
@@ -177,8 +177,8 @@ const Tablisa = () => {
             </header>
           </div>
         </div>
-      </TablisaStyle>
+      </Step0Style>
     </>
   );
 };
-export default Tablisa;
+export default Step0;

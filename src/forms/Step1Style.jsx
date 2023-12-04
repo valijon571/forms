@@ -1,9 +1,8 @@
 import styled from "styled-components";
-
-export const TablisaStyle = styled.div`
+export const Step1Style = styled.div`
   & .header {
     display: flex;
-    margin-top: 90px;
+    margin-top: 25px;
     justify-content: center;
     & .sc-cmaqmh_suTSs {
       border-radius: 20px;
@@ -48,6 +47,7 @@ export const TablisaStyle = styled.div`
           & .input_body {
             border-radius: 10px;
             border: 1px solid rgb(207, 219, 224);
+            background: rgb(247, 249, 253);
             padding: 16px 18px;
             width: 90%;
             display: flex;
@@ -58,6 +58,7 @@ export const TablisaStyle = styled.div`
             color: rgb(0, 0, 0);
             font-size: 20px;
             font-style: normal;
+            background: rgb(247, 249, 253);
             font-weight: 400;
             line-height: 27px;
             letter-spacing: 1px;
@@ -92,6 +93,7 @@ export const TablisaStyle = styled.div`
                 align-items: center;
                 & .input_body {
                   border-radius: 10px;
+                  background: rgb(247, 249, 253);
                   border: 1px solid rgb(207, 219, 224);
                   padding: 16px 18px;
                   width: 60%;
@@ -102,6 +104,7 @@ export const TablisaStyle = styled.div`
                     color: rgb(0, 0, 0);
                     font-size: 20px;
                     font-style: normal;
+                    background: rgb(247, 249, 253);
                     font-weight: 400;
                     line-height: 27px;
                     letter-spacing: 1px;
@@ -121,6 +124,7 @@ export const TablisaStyle = styled.div`
                 & .input_body {
                   border-radius: 10px;
                   border: 1px solid rgb(207, 219, 224);
+                  background: rgb(247, 249, 253);
                   padding: 16px 18px;
                   width: 88%;
                   display: flex;
@@ -130,6 +134,7 @@ export const TablisaStyle = styled.div`
                     color: rgb(0, 0, 0);
                     font-size: 20px;
                     font-style: normal;
+                    background: rgb(247, 249, 253);
                     font-weight: 400;
                     line-height: 27px;
                     letter-spacing: 1px;
@@ -141,9 +146,86 @@ export const TablisaStyle = styled.div`
             }
           }
         }
+        & .col_2 {
+          display: flex;
+          flex-wrap: wrap;
+          & .sc-gsFSXq_dVuJAY {
+            display: block;
+            width: 100%;
+            padding: 14px 0px;
+            & .label {
+              color: rgb(24, 24, 24);
+              font-size: 18px;
+              font-style: normal;
+              font-weight: 700;
+              line-height: 18.2px;
+              letter-spacing: 0.9px;
+              display: block;
+              padding-bottom: 14px;
+            }
+            & .i_target {
+              display: flex;
+              width: 100%;
+              -webkit-box-align: center;
+              align-items: center;
+              & .input_body_disabled {
+                background: rgb(247, 249, 253);
+                border-radius: 10px;
+                border: 1px solid rgb(207, 219, 224);
+                padding: 16px 18px;
+                width: 100%;
+                display: flex;
+                -webkit-box-align: center;
+                align-items: center;
+                & input {
+                  background: rgb(247, 249, 253);
+                  color: rgb(197, 202, 207);
+                  border: none;
+                }
+              }
+            }
+          }
+        }
+        & .sc-gsFSXq_dVuJAY {
+          display: block;
+          width: 100%;
+          padding: 14px 0px;
+          & .label {
+            color: rgb(24, 24, 24);
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 18.2px;
+            letter-spacing: 0.9px;
+            display: block;
+            padding-bottom: 14px;
+          }
+          & .i_target {
+            display: flex;
+            width: 100%;
+            -webkit-box-align: center;
+            align-items: center;
+            & .input_body_disabled {
+              background: rgb(247, 249, 253);
+              border-radius: 10px;
+              border: 1px solid rgb(207, 219, 224);
+              padding: 16px 18px;
+              width: 100%;
+              display: flex;
+              -webkit-box-align: center;
+              align-items: center;
+              & input {
+                background: rgb(247, 249, 253);
+                color: rgb(197, 202, 207);
+                border: none;
+              }
+            }
+          }
+        }
         & .btns {
           padding: 15px 0px 30px;
-          & button {
+          & .sc-imWYAI_fJvLDQ {
+            margin: 0px 10px 10px 0px;
             background: rgb(0, 170, 88);
             color: rgb(255, 255, 255);
             font-size: 20px;
@@ -154,6 +236,21 @@ export const TablisaStyle = styled.div`
             padding: 16px 50px;
             border-radius: 10px;
             border: 1px solid rgb(0, 170, 88);
+            cursor: pointer;
+          }
+          & .sc-jXbUNg_kChvNU {
+            margin: 0px 10px 0px 0px;
+            border-radius: 10px;
+            border: 1px solid rgb(0, 170, 88);
+            background: rgb(255, 255, 255);
+            color: rgb(0, 170, 88);
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-align: center;
+            padding: 16px 50px;
+            text-decoration: none;
             cursor: pointer;
           }
         }
