@@ -1,11 +1,11 @@
 import React from "react";
+import { Step4Style } from "./Step4Style";
 import { Link } from "react-router-dom";
-import { Step3Style } from "./Step3Style";
 
-const Step3 = () => {
+const Step4 = () => {
   return (
     <>
-      <Step3Style>
+      <Step4Style>
         <div class="form_target">
           <div class="sc-jaXxmE_gwJYWD">
             <div class="sc-cmaqmh_suTSs">
@@ -77,7 +77,7 @@ const Step3 = () => {
                                 type="date"
                                 name="birthDate"
                                 placeholder=""
-                                value="1997.12.28"
+                                value="1997-12-28"
                                 disabled=""
                               />
                             </div>
@@ -107,7 +107,7 @@ const Step3 = () => {
                               <input
                                 placeholder=""
                                 name="inn"
-                                value="5555555"
+                                value="4444444"
                                 disabled=""
                               />
                             </div>
@@ -140,7 +140,7 @@ const Step3 = () => {
                               type="text"
                               name="address"
                               placeholder=""
-                              value="5555555555555555555555555"
+                              value="22222222"
                               disabled=""
                             />
                           </div>
@@ -149,8 +149,12 @@ const Step3 = () => {
                     </div>
                   </div>
                   <div class="btns">
-                    <button>
-                      <Link to="/Step2">Tozalash</Link>
+                    <button
+                      type="button"
+                      class="sc-jXbUNg_kChvNU"
+                      //   style="margin: 0px 10px 0px 0px;"
+                    >
+                      Tozalash
                     </button>
                   </div>
                 </form>
@@ -163,11 +167,12 @@ const Step3 = () => {
                         <div class="seria">
                           <label class="sc-gsFSXq_dVuJAY" for="passportSeries">
                             <div class="i_target">
-                              <div class="input_body">
+                              <div class="input_body_disabled">
                                 <input
                                   placeholder="AB"
                                   name="passportSeries"
-                                  value=""
+                                  value="AB"
+                                  disabled=""
                                 />
                               </div>
                             </div>
@@ -176,11 +181,12 @@ const Step3 = () => {
                         <div class="number">
                           <label class="sc-gsFSXq_dVuJAY" for="passportNumber">
                             <div class="i_target">
-                              <div class="input_body">
+                              <div class="input_body_disabled">
                                 <input
                                   placeholder="1234567"
                                   name="passportNumber"
-                                  value=""
+                                  value="5116822"
+                                  disabled=""
                                 />
                               </div>
                             </div>
@@ -188,17 +194,34 @@ const Step3 = () => {
                         </div>
                       </div>
                     </div>
+                    <div>
+                      <label class="sc-gsFSXq_dVuJAY" for="name">
+                        <div class="label">Full Name</div>
+                        <div class="i_target">
+                          <div class="input_body_disabled">
+                            <input
+                              type="text"
+                              name="name"
+                              placeholder=""
+                              disabled=""
+                              value="QARSHIBOYEV VALIJON NURILLA O‘G‘LI"
+                            />
+                          </div>
+                        </div>
+                      </label>
+                    </div>
                     <div class="col_2">
                       <div>
                         <label class="sc-gsFSXq_dVuJAY" for="birthDate">
                           <div class="label">Birthdate</div>
                           <div class="i_target">
-                            <div class="input_body">
+                            <div class="input_body_disabled">
                               <input
                                 type="date"
                                 name="birthDate"
                                 placeholder=""
-                                value=""
+                                value="1997-12-28"
+                                disabled=""
                               />
                             </div>
                           </div>
@@ -208,8 +231,13 @@ const Step3 = () => {
                         <label class="sc-gsFSXq_dVuJAY" for="phone">
                           <div class="label">Phone</div>
                           <div class="i_target">
-                            <div class="input_body">
-                              <input placeholder="" name="phone" value="" />
+                            <div class="input_body_disabled">
+                              <input
+                                placeholder=""
+                                name="phone"
+                                value="+998(55) 555-55-55"
+                                disabled=""
+                              />
                             </div>
                           </div>
                         </label>
@@ -218,8 +246,29 @@ const Step3 = () => {
                         <label class="sc-gsFSXq_dVuJAY" for="inn">
                           <div class="label">Inn</div>
                           <div class="i_target">
-                            <div class="input_body">
-                              <input placeholder="" name="inn" value="" />
+                            <div class="input_body_disabled">
+                              <input
+                                placeholder=""
+                                name="inn"
+                                value="4444444"
+                                disabled=""
+                              />
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div>
+                        <label class="sc-gsFSXq_dVuJAY" for="name">
+                          <div class="label">PINFL</div>
+                          <div class="i_target">
+                            <div class="input_body_disabled">
+                              <input
+                                type="text"
+                                name="name"
+                                placeholder=""
+                                disabled=""
+                                value="32812975440034"
+                              />
                             </div>
                           </div>
                         </label>
@@ -229,12 +278,13 @@ const Step3 = () => {
                       <label class="sc-gsFSXq_dVuJAY" for="address">
                         <div class="label">Address</div>
                         <div class="i_target">
-                          <div class="input_body">
+                          <div class="input_body_disabled">
                             <input
                               type="text"
                               name="address"
                               placeholder=""
-                              value=""
+                              value="555555555555"
+                              disabled=""
                             />
                           </div>
                         </div>
@@ -242,17 +292,47 @@ const Step3 = () => {
                     </div>
                   </div>
                   <div class="btns">
-                    <button type="submit" class="sc-imWYAI_iFEioe">
-                      Найти
+                    <button
+                      type="button"
+                      class="sc-jXbUNg_kChvNU"
+                      //   style="margin: 0px 10px 0px 0px;"
+                    >
+                      <Link to="Step3">Tozalash</Link>
                     </button>
                   </div>
                 </form>
+                <div class="row">
+                  <div class="number">
+                    <label class="sc-gsFSXq_dVuJAY" for="promo_code">
+                      <div class="label">Promo Code</div>
+                      <div class="i_target">
+                        <div class="input_body">
+                          <input
+                            type="text"
+                            name="promo_code"
+                            placeholder=""
+                            value=""
+                          />
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                <div class="btns">
+                  <button
+                    type="button"
+                    class="sc-imWYAI_iFEioe"
+                    // style="margin-right: 20px;"
+                  >
+                    Submit
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </Step3Style>
+      </Step4Style>
     </>
   );
 };
-export default Step3;
+export default Step4;

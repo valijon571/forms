@@ -1,5 +1,5 @@
 import styled from "styled-components";
-export const Step3Style = styled.div`
+export const Step4Style = styled.div`
   & .form_target {
     width: 100%;
     display: flex;
@@ -284,7 +284,6 @@ export const Step3Style = styled.div`
             border-radius: 10px;
             border: 1px solid rgb(0, 170, 88);
             cursor: pointer;
-            
           }
         }
       }

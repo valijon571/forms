@@ -230,6 +230,7 @@ export const Step1Style = styled.div`
             color: rgb(255, 255, 255);
             font-size: 20px;
             font-style: normal;
+            text-decoration-line: none;
             font-weight: 700;
             letter-spacing: 1px;
             text-align: center;

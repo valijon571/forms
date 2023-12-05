@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import InputMask from "react-input-mask";
+import { Link } from "react-router-dom";
 import { Step0Style } from "./Step0Style";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +20,7 @@ const Step0 = () => {
     tech_passport_seria: "",
     tech_passport_number: "",
   });
+  const [resData, setrResData] = useState({});
   const navigate = useNavigate();
   const onSubmit = (e) => {
     e.preventDefault();
@@ -46,15 +49,10 @@ const Step0 = () => {
           tech_passport_number: obj.tech_passport_number,
         })
         .then((r) => {
-          localStorage.setItem("token", r?.data?.tokens?.access ?? "");
-          navigate("/Step1");
+          setrResData(r?.data?.data ?? {});
+          // navigate("/Step1");
         })
-        .catch((e) => {
-          console.log(e);
-          if (e?.response?.status === 400) {
-            setErrors((pV) => ({ ...pV, user_not: true }));
-          }
-        })
+        .catch((e) => {})
         .finally(() => {
           setLoading(false);
         });
@@ -87,10 +85,16 @@ const Step0 = () => {
                     <label>Гос. номер</label>
                     <br />
                     <div class="input_body">
-                      <input
-                        type="text"
+                      <InputMask
+                        // type="text"
                         placeholder="01A123AB"
                         name="gov_number"
+                        mask="kklkkkll"
+                        formatChars={{
+                          k: "[0-9]",
+                          l: "[A-Z]",
+                          "*": "[A-Za-z0-9]",
+                        }}
                         value={obj?.gov_number}
                         onChange={(e) => {
                           setObj({ ...obj, gov_number: e.target.value });
@@ -108,8 +112,13 @@ const Step0 = () => {
                       <div class="seria">
                         <div class="i_target">
                           <div class="input_body">
-                            <input
-                              type="text"
+                            <InputMask
+                              // type="text"
+                              mask="ddd"
+                              formatChars={{
+                                d: "[A-Z]",
+                                "*": "[A-Za-z0-9]",
+                              }}
                               placeholder="ABD"
                               name="tech_passport_seria"
                               value={obj?.tech_passport_seria}
@@ -133,10 +142,15 @@ const Step0 = () => {
                       <div class="number">
                         <div class="i_target">
                           <div class="input_body">
-                            <input
-                              type="text"
+                            <InputMask
+                              // type="text"
                               placeholder="1234567"
                               name="tech_passport_number"
+                              mask="nnnnnnn"
+                              formatChars={{
+                                n: "[0-9]",
+                                "*": "[A-Za-z0-9]",
+                              }}
                               value={obj?.tech_passport_number}
                               onChange={(e) => {
                                 setObj({
@@ -162,16 +176,89 @@ const Step0 = () => {
                       </div>
                     </div>
                   </div>
+
+                  {resData?.orgname ? (
+                    <>
+                      <div class="col_2">
+                        <div>
+                          <label class="sc-gsFSXq_dVuJAY" for="name">
+                            <div class="label">Модель ТС</div>
+                            <div class="i_target">
+                              <div class="input_body_disabled">
+                                <input
+                                  type="text"
+                                  name="name"
+                                  placeholder=""
+                                  disabled={true}
+                                  value={resData?.model_name}
+                                />
+                              </div>
+                            </div>
+                          </label>
+                        </div>
+                        <div>
+                          <label class="sc-gsFSXq_dVuJAY" for="name">
+                            <div class="label">Год выпуска</div>
+                            <div class="i_target">
+                              <div class="input_body_disabled">
+                                <input
+                                  type="text"
+                                  name="name"
+                                  placeholder=""
+                                  disabled={true}
+                                  value={resData?.issue_year}
+                                />
+                              </div>
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+
+                      <div>
+                        <label class="sc-gsFSXq_dVuJAY" for="name">
+                          <div class="label">Владелец (ФИО)</div>
+                          <div class="i_target">
+                            <div class="input_body_disabled">
+                              <input
+                                type="text"
+                                name="name"
+                                placeholder=""
+                                disabled={true}
+                                value={resData?.orgname}
+                              />
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                    </>
+                  ) : null}
                 </div>
                 <hr />
                 <div class="btns">
                   {loading ? (
                     "Yuklanmoqda"
                   ) : (
-                    <button type="submit" class="sc-imWYAI fJvLDQ">
+                    <button type="submit" class="sc-imWYAI_fJvLDQ">
                       Найти
                     </button>
                   )}
+                  {resData?.orgname ? (
+                    <>
+                      <div class="btns">
+                        <Link
+                          to="/Step2"
+                          type="button"
+                          class="sc-imWYAI_fJvLDQ"
+                        >
+                          Найти
+                        </Link>
+
+                        <Link to="/" type="button" class="sc-jXbUNg_kChvNU">
+                          Tozalash
+                        </Link>
+                      </div>
+                    </>
+                  ) : null}
                 </div>
               </form>
             </header>
