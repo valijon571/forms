@@ -332,6 +332,22 @@ export const Step2Style = styled.div`
             border: 1px solid rgb(0, 170, 88);
             cursor: pointer;
           }
+          & .btns {
+            padding: 15px 0px 30px;
+            & button {
+              background: rgb(0, 170, 88);
+              color: rgb(255, 255, 255);
+              font-size: 20px;
+              font-style: normal;
+              font-weight: 700;
+              letter-spacing: 1px;
+              text-align: center;
+              padding: 16px 50px;
+              border-radius: 10px;
+              border: 1px solid rgb(0, 170, 88);
+              cursor: pointer;
+            }
+          }
         }
       }
     }

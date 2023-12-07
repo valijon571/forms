@@ -16,7 +16,15 @@ const Step2 = () => {
     inn: false,
     address: false,
   });
-  const [obj, setObj] = useState({
+  const [ben, setBen] = useState({
+    passportSeries: "",
+    passportNumber: "",
+    birthDate: "",
+    phone: "",
+    inn: "",
+    address: "",
+  });
+  const [ins, setIns] = useState({
     passportSeries: "",
     passportNumber: "",
     birthDate: "",
@@ -25,33 +33,35 @@ const Step2 = () => {
     address: "",
   });
   const [resData, setrResData] = useState({});
+  const [rosData, setrRosData] = useState({});
   const navigate = useNavigate();
-  const onSubmit = (e) => {
+  //=======================================================BEN
+  const BenSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
     let t = true,
       err = {};
-    if (!obj.passportSeries) {
+    if (!ben.passportSeries) {
       t = false;
       err = { ...err, passportSeries: true };
     }
-    if (!obj.passportNumber) {
+    if (!ben.passportNumber) {
       t = false;
       err = { ...err, passportNumber: true };
     }
-    if (!obj.birthDate) {
+    if (!ben.birthDate) {
       t = false;
       err = { ...err, birthDate: true };
     }
-    if (!obj.phone) {
+    if (!ben.phone) {
       t = false;
       err = { ...err, phone: true };
     }
-    if (!obj.inn) {
+    if (!ben.inn) {
       t = false;
       err = { ...err, inn: true };
     }
-    if (!obj.address) {
+    if (!ben.address) {
       t = false;
       err = { ...err, address: true };
     }
@@ -60,17 +70,74 @@ const Step2 = () => {
         .post(
           "https://apiinson.yarbek.uz/api/v1/gazbalon/provider/passport-birth-date",
           {
-            passportSeries: obj.passportSeries,
-            passportNumber: obj.passportNumber,
-            birthDate: formatDate(obj.birthDate),
-            phone: obj.phone,
-            inn: obj.inn,
-            
-            address: obj.address,
+            passportSeries: ben.passportSeries,
+            passportNumber: ben.passportNumber,
+            birthDate: formatDate(ben.birthDate),
+            phone: ben.phone,
+            inn: ben.inn,
+
+            address: ben.address,
           }
         )
         .then((r) => {
-          setrResData(r?.data?.data ?? {});
+          setrResData(r?.data.data ?? {});
+        })
+        .catch((e) => {})
+        .finally(() => {
+          setLoading(false);
+        });
+    } else {
+      setLoading(false);
+      setErrors(err);
+    }
+  };
+
+  //========================================================INS
+  const InsSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    let t = true,
+      err = {};
+    if (!ins.passportSeries) {
+      t = false;
+      err = { ...err, passportSeries: true };
+    }
+    if (!ins.passportNumber) {
+      t = false;
+      err = { ...err, passportNumber: true };
+    }
+    if (!ins.birthDate) {
+      t = false;
+      err = { ...err, birthDate: true };
+    }
+    if (!ins.phone) {
+      t = false;
+      err = { ...err, phone: true };
+    }
+    if (!ins.inn) {
+      t = false;
+      err = { ...err, inn: true };
+    }
+    if (!ins.address) {
+      t = false;
+      err = { ...err, address: true };
+    }
+    if (t) {
+      axios
+        .post(
+          "https://apiinson.yarbek.uz/api/v1/gazbalon/provider/passport-birth-date",
+          {
+            passportSeries: ins.passportSeries,
+            passportNumber: ins.passportNumber,
+            birthDate: formatDate(ins.birthDate),
+            phone: ins.phone,
+            inn: ins.inn,
+
+            address: ins.address,
+          }
+        )
+        .then((r) => {
+          setrRosData(r?.data.data ?? {});
         })
         .catch((e) => {})
         .finally(() => {
@@ -99,7 +166,7 @@ const Step2 = () => {
                 </div>
                 <div class="f_body">
                   <div class="sub_title">Beneficiary data</div>
-                  <form onSubmit={onSubmit}>
+                  <form onSubmit={BenSubmit}>
                     <div class="row">
                       <div class="doc_number">
                         <label>Passport seria/nubmer</label>
@@ -116,14 +183,15 @@ const Step2 = () => {
                                     placeholder="AB"
                                     name="passportSeries"
                                     formatChars={{
-                                      a: "[A-Z]",
+                                      a: "[A-Za-z]",
                                       "*": "[A-Za-z0-9]",
                                     }}
-                                    value={obj?.passportSeries}
+                                    value={ben?.passportSeries}
                                     onChange={(e) => {
-                                      setObj({
-                                        ...obj,
-                                        passportSeries: e.target.value,
+                                      setBen({
+                                        ...ben,
+                                        passportSeries:
+                                          e?.target?.value?.toUpperCase(),
                                       });
                                       setErrors({
                                         ...errors,
@@ -153,10 +221,10 @@ const Step2 = () => {
                                       n: "[0-9]",
                                       "*": "[A-Za-z0-9]",
                                     }}
-                                    value={obj?.passportNumber}
+                                    value={ben?.passportNumber}
                                     onChange={(e) => {
-                                      setObj({
-                                        ...obj,
+                                      setBen({
+                                        ...ben,
                                         passportNumber: e.target.value,
                                       });
                                       setErrors({
@@ -176,7 +244,7 @@ const Step2 = () => {
                       </div>
                       {resData?.PINFL ? (
                         <>
-                          <div>
+                          <div className="step0">
                             <label class="sc-gsFSXq_dVuJAY" for="name">
                               <div class="label">Full Name</div>
                               <div class="i_target">
@@ -185,8 +253,14 @@ const Step2 = () => {
                                     type="text"
                                     name="name"
                                     placeholder=""
-                                    disabled={true} 
-                                    value={resData?.LAST_NAME +" "+ resData?.FIRST_NAME +" "+ resData?.MIDDLE_NAME }
+                                    disabled={true}
+                                    value={
+                                      resData?.LAST_NAME +
+                                      " " +
+                                      resData?.FIRST_NAME +
+                                      " " +
+                                      resData?.MIDDLE_NAME
+                                    }
                                   />
                                 </div>
                               </div>
@@ -204,10 +278,10 @@ const Step2 = () => {
                                   type="date"
                                   name="birthDate"
                                   placeholder=""
-                                  value={obj?.birthDate}
+                                  value={ben?.birthDate}
                                   onChange={(e) => {
-                                    setObj({
-                                      ...obj,
+                                    setBen({
+                                      ...ben,
                                       birthDate: e.target.value,
                                     });
                                     setErrors({ ...errors, birthDate: false });
@@ -234,9 +308,9 @@ const Step2 = () => {
                                     a: "[A-Za-z]",
                                     "*": "[A-Za-z0-9]",
                                   }}
-                                  value={obj?.phone}
+                                  value={ben?.phone}
                                   onChange={(e) => {
-                                    setObj({ ...obj, phone: e.target.value });
+                                    setBen({ ...ben, phone: e.target.value });
                                     setErrors({ ...errors, phone: false });
                                   }}
                                 />
@@ -255,9 +329,9 @@ const Step2 = () => {
                                 <InputMask
                                   placeholder=""
                                   name="inn"
-                                  value={obj?.inn}
+                                  value={ben?.inn}
                                   onChange={(e) => {
-                                    setObj({ ...obj, inn: e.target.value });
+                                    setBen({ ...ben, inn: e.target.value });
                                     setErrors({ ...errors, inn: false });
                                   }}
                                 />
@@ -298,9 +372,9 @@ const Step2 = () => {
                                 type="text"
                                 name="address"
                                 placeholder=""
-                                value={obj?.address}
+                                value={ben?.address}
                                 onChange={(e) => {
-                                  setObj({ ...obj, address: e.target.value });
+                                  setBen({ ...ben, address: e.target.value });
                                   setErrors({ ...errors, address: false });
                                 }}
                               />
@@ -320,7 +394,322 @@ const Step2 = () => {
                           Найти
                         </button>
                       )}
+
+                      {resData?.PINFL ? (
+                        <>
+                          <Link to="/" type="button" class="sc-jXbUNg_kChvNU">
+                            Tozalash
+                          </Link>
+                        </>
+                      ) : null}
                     </div>
+                  </form>
+
+                  <form onSubmit={InsSubmit}>
+                    {resData?.PINFL ? (
+                      <>
+                        <div class="sub_title">Insurant data</div>
+
+                        <div class="row">
+                          <div class="doc_number">
+                            <label>Passport seria/nubmer</label>
+                            <div class="inputs">
+                              <div class="seria">
+                                <label
+                                  class="sc-gsFSXq_dVuJAY"
+                                  for="passportSeries"
+                                >
+                                  <div class="i_target">
+                                    <div class="input_body">
+                                      <InputMask
+                                        mask="aa"
+                                        placeholder="AB"
+                                        name="passportSeries"
+                                        formatChars={{
+                                          a: "[A-Za-z]",
+                                          "*": "[A-Za-z0-9]",
+                                        }}
+                                        value={ins?.passportSeries}
+                                        onChange={(e) => {
+                                          setIns({
+                                            ...ins,
+                                            passportSeries: e?.target?.value?.toUpperCase(),
+                                          });
+                                          setErrors({
+                                            ...errors,
+                                            passportSeries: false,
+                                          });
+                                        }}
+                                      />
+                                      {errors?.passportSeries ? (
+                                        <div style={{ color: "red" }}>
+                                          xatolik!
+                                        </div>
+                                      ) : null}
+                                    </div>
+                                  </div>
+                                </label>
+                              </div>
+                              <div class="number">
+                                <label
+                                  class="sc-gsFSXq_dVuJAY"
+                                  for="passportNumber"
+                                >
+                                  <div class="i_target">
+                                    <div class="input_body">
+                                      <InputMask
+                                        placeholder="1234567"
+                                        name="passportNumber"
+                                        mask="nnnnnnn"
+                                        formatChars={{
+                                          n: "[0-9]",
+                                          "*": "[A-Za-z0-9]",
+                                        }}
+                                        value={ins?.passportNumber}
+                                        onChange={(e) => {
+                                          setIns({
+                                            ...ins,
+                                            passportNumber: e.target.value,
+                                          });
+                                          setErrors({
+                                            ...errors,
+                                            passportNumber: false,
+                                          });
+                                        }}
+                                      />
+                                      {errors?.passportNumber ? (
+                                        <div style={{ color: "red" }}>
+                                          xatolik!
+                                        </div>
+                                      ) : null}
+                                    </div>
+                                  </div>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          {rosData?.PINFL ? (
+                            <>
+                              <div className="step0">
+                                <label class="sc-gsFSXq_dVuJAY" for="name">
+                                  <div class="label">Full Name</div>
+                                  <div class="i_target">
+                                    <div class="input_body_disabled">
+                                      <input
+                                        type="text"
+                                        name="name"
+                                        placeholder=""
+                                        disabled={true}
+                                        value={
+                                          rosData?.LAST_NAME +
+                                          " " +
+                                          rosData?.FIRST_NAME +
+                                          " " +
+                                          rosData?.MIDDLE_NAME
+                                        }
+                                      />
+                                    </div>
+                                  </div>
+                                </label>
+                              </div>
+                            </>
+                          ) : null}
+                          <div class="col_2">
+                            <div className="on">
+                              <label class="sc-gsFSXq_dVuJAY" for="birthDate">
+                                <div class="label">Birthdate</div>
+                                <div class="i_target">
+                                  <div class="input_body">
+                                    <InputMask
+                                      type="date"
+                                      name="birthDate"
+                                      placeholder=""
+                                      value={ins?.birthDate}
+                                      onChange={(e) => {
+                                        setIns({
+                                          ...ins,
+                                          birthDate: e.target.value,
+                                        });
+                                        setErrors({
+                                          ...errors,
+                                          birthDate: false,
+                                        });
+                                      }}
+                                    />
+                                    {errors?.birthDate ? (
+                                      <div style={{ color: "red" }}>
+                                        xatolik!
+                                      </div>
+                                    ) : null}
+                                  </div>
+                                </div>
+                              </label>
+                            </div>
+                            <div className="to">
+                              <label class="sc-gsFSXq_dVuJAY" for="phone">
+                                <div class="label">Phone</div>
+                                <div class="i_target">
+                                  <div class="input_body">
+                                    <InputMask
+                                      placeholder=""
+                                      name="phone"
+                                      mask="+998(nn) nnn-nn-nn"
+                                      formatChars={{
+                                        n: "[0-9]",
+                                        a: "[A-Za-z]",
+                                        "*": "[A-Za-z0-9]",
+                                      }}
+                                      value={ins?.phone}
+                                      onChange={(e) => {
+                                        setIns({
+                                          ...ins,
+                                          phone: e.target.value,
+                                        });
+                                        setErrors({
+                                          ...errors,
+                                          phone: false,
+                                        });
+                                      }}
+                                    />
+                                    {errors?.phone ? (
+                                      <div style={{ color: "red" }}>
+                                        xatolik!
+                                      </div>
+                                    ) : null}
+                                  </div>
+                                </div>
+                              </label>
+                            </div>
+                            <div className="sri">
+                              <label class="sc-gsFSXq_dVuJAY" for="inn">
+                                <div class="label">Inn</div>
+                                <div class="i_target">
+                                  <div class="input_body">
+                                    <InputMask
+                                      placeholder=""
+                                      name="inn"
+                                      value={ins?.inn}
+                                      onChange={(e) => {
+                                        setIns({
+                                          ...ins,
+                                          inn: e.target.value,
+                                        });
+                                        setErrors({
+                                          ...errors,
+                                          inn: false,
+                                        });
+                                      }}
+                                    />
+                                    {errors?.inn ? (
+                                      <div style={{ color: "red" }}>
+                                        xatolik!
+                                      </div>
+                                    ) : null}
+                                  </div>
+                                </div>
+                              </label>
+                            </div>
+                          </div>
+                          {rosData?.PINFL ? (
+                            <>
+                              <div>
+                                <label class="sc-gsFSXq_dVuJAY" for="name">
+                                  <div class="label">PINFL</div>
+                                  <div class="i_target">
+                                    <div class="input_body_disabled">
+                                      <input
+                                        type="text"
+                                        name="name"
+                                        placeholder=""
+                                        disabled={true}
+                                        value={rosData?.PINFL}
+                                      />
+                                    </div>
+                                  </div>
+                                </label>
+                              </div>
+                            </>
+                          ) : null}
+                          <div>
+                            <label class="sc-gsFSXq_dVuJAY" for="address">
+                              <div class="label">Address</div>
+                              <div class="i_target">
+                                <div class="input_body">
+                                  <InputMask
+                                    type="text"
+                                    name="address"
+                                    placeholder=""
+                                    value={ins?.address}
+                                    onChange={(e) => {
+                                      setIns({
+                                        ...ins,
+                                        address: e.target.value,
+                                      });
+                                      setErrors({
+                                        ...errors,
+                                        address: false,
+                                      });
+                                    }}
+                                  />
+                                  {errors?.address ? (
+                                    <div style={{ color: "red" }}>xatolik!</div>
+                                  ) : null}
+                                </div>
+                              </div>
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="btns">
+                          {loading ? (
+                            "Yuborilmoqda"
+                          ) : (
+                            <button type="submit" class="sc-imWYAI_fJvLDQ">
+                              Найти
+                            </button>
+                          )}
+                          {rosData?.PINFL ? (
+                            <>
+                              <Link
+                                to="/"
+                                type="button"
+                                class="sc-jXbUNg_kChvNU"
+                              >
+                                Tozalash
+                              </Link>
+                            </>
+                          ) : null}
+                        </div>
+                        {rosData?.PINFL ? (
+                          <>
+                            <div class="number">
+                              <label class="sc-gsFSXq_dVuJAY" for="promo_code">
+                                <div class="label">Promo Code</div>
+                                <div class="i_target">
+                                  <div class="input_body">
+                                    <input
+                                      type="text"
+                                      name="promo_code"
+                                      placeholder=""
+                                      // value=""
+                                    />
+                                  </div>
+                                </div>
+                              </label>
+                            </div>
+                            <div class="btns">
+                              <button
+                                type="button"
+                                class="sc-imWYAI iFEioe"
+                                // style="margin-right: 20px;"
+                              >
+                                Submit
+                              </button>
+                            </div>
+                          </>
+                        ) : null}
+                      </>
+                    ) : null}
                   </form>
                 </div>
               </div>
